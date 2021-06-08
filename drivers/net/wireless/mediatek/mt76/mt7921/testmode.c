@@ -63,6 +63,8 @@ mt7921_tm_set(struct mt7921_dev *dev, struct mt7921_tm_cmd *req)
 		/* Testmode starts on full power mode */
 		mt76_connac_pm_wake(&dev->mphy, pm);
 		pm->enable = false;
+
+		mt76_wr(dev, MT_WF_RFCR(0), dev->mt76.rxfilter);
 	}
 
 	ret = mt76_mcu_send_msg(&dev->mt76, MCU_CMD_TEST_CTRL, &cmd,
