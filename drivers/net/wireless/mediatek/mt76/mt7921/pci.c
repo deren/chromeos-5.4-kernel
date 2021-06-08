@@ -227,6 +227,9 @@ static int mt7921_pci_probe(struct pci_dev *pdev,
 	if (ret)
 		goto err_free_irq;
 
+	mt7921_pci_enable_aspm(pdev);
+	mt7921_pci_enable_aspm(pdev->bus->self);
+
 	return 0;
 
 err_free_irq:
